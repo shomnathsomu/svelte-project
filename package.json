@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "materialize-css": "^1.0.0-rc.2",
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "svelte-routing": "^1.4.0"
   },
   "scripts": {
     "build": "rollup -c",
