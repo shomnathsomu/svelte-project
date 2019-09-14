@@ -1,8 +1,12 @@
 {
   "version": 3,
   "file": "bundle.css",
-  "sources": [],
-  "sourcesContent": [],
+  "sources": [
+    "..\\src\\pages\\Home.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n    import { onMount } from 'svelte';\r\n\r\n    import PostForm from \"../components/PostForm.svelte\";\r\n\r\n    const apiBaseUrl = \"https://ndb99xkpdk.execute-api.eu-west-2.amazonaws.com/dev\";\r\n\r\n    let posts=[];\r\n    onMount(async () => {\r\n        const res = await fetch(apiBaseUrl + '/posts');\r\n        posts = await res.json();\r\n    })\r\n\r\n    function editPost(post){\r\n        console.log(post);\r\n    }\r\n\r\n    function deletePost(id){\r\n        console.log('Deleting post with id', id);\r\n    }\r\n</script>\r\n\r\n<style>\r\n    .delete-btn{\r\n        color: red !important;\r\n    }\r\n    .card .card-content .card-title {\r\n        margin-bottom: 0;\r\n    }\r\n    .card .card-content p.timestamp {\r\n        color: #999;\r\n        margin-bottom: 10px;\r\n    }\r\n</style>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col s6\">\r\n        <PostForm />\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    {#if posts.length === 0}\r\n        <h3>Loading posts...</h3>\r\n    {:else}\r\n        {#each posts as post}\r\n            <div class=\"col s6\">\r\n                <div class=\"card\">\r\n                    <div class=\"card-content\">\r\n                        <p class=\"card-title\">{post.title}</p>\r\n                        <p class=\"timestamp\">{post.createdAt}</p>\r\n                        <p>{post.body}</p>\r\n                    </div>\r\n                    <div class=\"card-action\">\r\n                        <a href=\"#\" on:click={() => editPost(post)}>Edit</a>\r\n                        <a href=\"#\" class=\"delete-btn\" on:click = {() => deletePost(post.id)}>Delete</a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        {/each}\r\n    {/if}\r\n</div>"
+  ],
   "names": [],
-  "mappings": ""
+  "mappings": "AAuBI,wBAAW,CAAC,AACR,KAAK,CAAE,GAAG,CAAC,UAAU,AACzB,CAAC,AACD,kBAAK,CAAC,aAAa,CAAC,WAAW,aAAC,CAAC,AAC7B,aAAa,CAAE,CAAC,AACpB,CAAC,AACD,kBAAK,CAAC,aAAa,CAAC,CAAC,UAAU,aAAC,CAAC,AAC7B,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,AACvB,CAAC"
 }
